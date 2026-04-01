@@ -1,10 +1,8 @@
 # Kinetic-Alpha-Agentic-Technical-Analysis-Execution
-...
-mermaid 
-graph TD
-... 
-...
-Autonomous AI Agent for technical market analysis, utilizing ReAct prompting to validate SMA/EMA crossovers and 'Death Cross' signals across equities and crypto.
+
+
+Autonomous AI Agent for technical market analysis, utilizing ReAct prompting to validate SMA/EMA crossovers and 'Death Cross' signals across equities and crypto. 
+... mermaid 
 graph TD
     %% Define Nodes
     A[Market Data Source<br>(yfinance/AlphaVantage)] -->|Pulls Ticker Data<br>(TSLA, XOM, GIS)| B(Data Processor<br>Pandas/NumPy)
@@ -41,4 +39,4 @@ graph TD
     class G signal;
     class H agent;
     class L,M action;
-    
+    ...
