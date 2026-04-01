@@ -25,6 +25,8 @@ graph TD
     class G signal;
     class H agent;
     class L,M action;
+class L,M action;
+
 
 🧠 Technical Deep Dive
 While standard algorithms trigger on simple 50/200 SMA crossovers, Kinetic-Alpha uses a layered approach to minimize "whipsaw" trades (technical fake-outs).
