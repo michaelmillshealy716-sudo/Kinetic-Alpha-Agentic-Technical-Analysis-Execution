@@ -3,8 +3,7 @@ u# Kinetic-Alpha-Agentic-Technical-Analysis-Execution
 
 Autonomous AI Agent for technical market analysis, utilizing ReAct prompting to validate SMA/EMA crossovers and 'Death Cross' signals across equities and crypto. 
 Autonomous AI Agent for technical market analysis...
-![Architecture Diagram](https://github.com/michaelmillshealy716-sudo/Kinetic-Alpha-Agentic-Technical-Analysis-Execution/blob/main/Screenshot_20260402_033132_Chrome.jpg?raw=true)
-
+​![Architecture Diagram](Screenshot_20260402_033132_Chrome.jpg)
 🧠 Technical Deep Dive
 While standard algorithms trigger on simple 50/200 SMA crossovers, Kinetic-Alpha uses a layered approach to minimize "whipsaw" trades (technical fake-outs).
 1. Multimodal Indicator Validation
