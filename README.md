@@ -8,6 +8,9 @@ The architectural framework of this software is licensed under the MIT License. 
 Autonomous AI Agent for technical market analysis...
 ​
 ![Architecture Diagram](Screenshot_20260402_033132_Chrome.jpg)
+
+Indicator parameters shown (e.g., 50/200 SMA) are illustrative; the production engine utilizes dynamic, volatility-adjusted windows.
+
 🧠 Technical Deep Dive
 While standard algorithms trigger on simple 50/200 SMA crossovers, Kinetic-Alpha uses a layered approach to minimize "whipsaw" trades (technical fake-outs).
 1. Multimodal Indicator Validation
