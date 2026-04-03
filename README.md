@@ -15,7 +15,7 @@ Utilizes a Proprietary Multimodal Validation Engine to filter 'whipsaw' trades. 
 2. Agentic Reasoning Loop (ReAct)
 When a Death Cross or Golden Cross is detected, the agent initiates a reasoning chain:
 Contextual Analysis: It queries historical volatility during similar crossovers for the specific ticker (e.g., TSLA vs. GIS).
-Strategy Matching: Based on the Greeks and current IV (Implied Volatility), it suggests an optimal structure—shifting from direct equity plays to Calendar Spreads or Covered Calls to capitalize on theta decay.
+Strategy Matching: Based on the Greeks and current IV (Implied Volatility), it suggests an optimal structure—suggest—shifting from direct equity plays to advanced derivative strategies designed to capitalize on specific volatility and time-decay parameters.
 3. Built for Production
 Asynchronous Processing: Built with Python's asyncio for real-time monitoring of multiple watchlists.
 Modular Architecture: Easily swap out LLM providers or financial data APIs without refactoring the core indicator engine.
