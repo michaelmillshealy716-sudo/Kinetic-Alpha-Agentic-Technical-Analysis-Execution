@@ -11,7 +11,7 @@ Autonomous AI Agent for technical market analysis...
 🧠 Technical Deep Dive
 While standard algorithms trigger on simple 50/200 SMA crossovers, Kinetic-Alpha uses a layered approach to minimize "whipsaw" trades (technical fake-outs).
 1. Multimodal Indicator Validation
-The system doesn't just look at the cross; it calculates the EMA (Exponential Moving Average) slope. If the 50-day SMA crosses the 200-day, but the short-term EMA slope is neutral, the agent flags it as a "Weak Signal" and waits for volume confirmation.
+Utilizes a Proprietary Multimodal Validation Engine to filter 'whipsaw' trades. The system correlates secondary trend vectors against primary crossovers to ensure signal strength before agent initiation. as a "Weak Signal" and waits for volume confirmation.
 2. Agentic Reasoning Loop (ReAct)
 When a Death Cross or Golden Cross is detected, the agent initiates a reasoning chain:
 Contextual Analysis: It queries historical volatility during similar crossovers for the specific ticker (e.g., TSLA vs. GIS).
