@@ -1,0 +1,27 @@
+name: Execute Technical Analysis Signal
+
+on:
+  workflow_dispatch: # This allows you to "run this bitch" manually with a button
+  schedule:
+    - cron: '0 * * * *' # This runs it automatically every hour
+
+jobs:
+  run-signal:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run Bridge Logic
+        env:
+          Rangus_Jangus: ${{ secrets.Rangus_Jangus }} # This pulls the secret you just made
+        run: python bridge.py
+        
