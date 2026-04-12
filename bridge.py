@@ -1,14 +1,14 @@
 import json
 import requests
-import os  # Added to handle environment variables
+import os
 
 def chore_boy_fetch():
     # THE CHORE BOY: Hunting live market variables
-    # Key is now pulled from the system environment for security
-    api_key = os.getenv("RANGUS_KEY") 
+    # Updated to match your specific naming: Rangus_Jangus
+    api_key = os.getenv("Rangus_Jangus") 
     
     if not api_key:
-        print(">> CHORE BOY ERROR: No API key found in environment variables.")
+        print(">> CHORE BOY ERROR: Rangus_Jangus key not found in environment.")
         return None
 
     api_url = f"https://api.polygon.io/v2/aggs/ticker/AAPL/prev?adjusted=true&apiKey={api_key}"
