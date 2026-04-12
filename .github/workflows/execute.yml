@@ -5,13 +5,16 @@ on:
   schedule:
     - cron: '0 * * * *'
 
-# This silences the warning by forcing the newer Node engine
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
 
 jobs:
   run-signal:
     runs-on: ubuntu-latest
+    # Added permissions so the agent can write back to your repo
+    permissions:
+      contents: write
+      
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,4 +31,11 @@ jobs:
         env:
           Rangus_Jangus: ${{ secrets.Rangus_Jangus }}
         run: python bridge.py
-        
+
+      # NEW: The Persistence Step
+      - name: Commit and Push Veritas Payload
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update live market snapshot [skip ci]"
+          file_pattern: 'veritas_data.json'
+          
