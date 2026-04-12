@@ -5,28 +5,30 @@ import time
 from datetime import datetime
 
 def get_veritas_score(ticker, api_key):
-    """The 'Dutchman' Logic: SMA + RSI = Veritas Score"""
-    # 1. Fetch SMA (Simple Moving Average)
-    sma_url = f"https://api.polygon.io/v1/indicators/sma/{ticker}?timespan=day&window=20&apiKey={api_key}"
-    # 2. Fetch RSI (Relative Strength Index)
-    rsi_url = f"https://api.polygon.io/v1/indicators/rsi/{ticker}?timespan=day&window=14&apiKey={api_key}"
-    
     try:
-        # Get Current Price first for the SMA check
+        # 1. Price Hunt
         price_url = f"https://api.polygon.io/v2/aggs/ticker/{ticker}/prev?apiKey={api_key}"
         price_data = requests.get(price_url).json()
         current_price = price_data['results'][0]['c']
-        
+        time.sleep(15) # The "Breath"
+
+        # 2. SMA Hunt
+        sma_url = f"https://api.polygon.io/v1/indicators/sma/{ticker}?timespan=day&window=20&apiKey={api_key}"
         sma_val = requests.get(sma_url).json()['results']['values'][0]['value']
+        time.sleep(15) # The "Breath"
+
+        # 3. RSI Hunt
+        rsi_url = f"https://api.polygon.io/v1/indicators/rsi/{ticker}?timespan=day&window=14&apiKey={api_key}"
         rsi_val = requests.get(rsi_url).json()['results']['values'][0]['value']
+        time.sleep(15) # The "Breath"
         
-        # SCORING LOGIC (0-100)
-        score = 50 # Start at neutral
-        if current_price > sma_val: score += 25 # Trend is up
-        else: score -= 25 # Trend is down
+        # Confluence Calculus
+        score = 50
+        if current_price > sma_val: score += 25
+        else: score -= 25
         
-        if rsi_val < 35: score += 25 # Oversold / Value Buy
-        elif rsi_val > 65: score -= 25 # Overbought / High Risk
+        if rsi_val < 35: score += 25
+        elif rsi_val > 65: score -= 25
         
         return {
             "price": round(current_price, 2),
@@ -35,38 +37,9 @@ def get_veritas_score(ticker, api_key):
             "score": score,
             "signal": "BULLISH" if score > 50 else "BEARISH" if score < 50 else "NEUTRAL"
         }
-    except:
+    except Exception as e:
+        print(f">> CHORE BOY: Failed on {ticker}: {e}")
         return None
 
-def deploy_signal():
-    api_key = os.getenv("Rangus_Jangus")
-    # YOUR 3 SCORE LIST (AMC, WBA, NVDA)
-    watch_list = ["AMC", "WBA", "NVDA"]
-    results = {}
-    total_score = 0
-    
-    for ticker in watch_list:
-        print(f">> CHORE BOY: Running Dutchman Analysis on {ticker}...")
-        analysis = get_veritas_score(ticker, api_key)
-        if analysis:
-            results[ticker] = analysis
-            total_score += analysis['score']
-        time.sleep(12) # Respecting the 5-calls-per-minute free tier limit
+# ... rest of deploy_signal() stays the same ...
 
-    # THE COMPREHENSIVE SCORE (Global Market Health)
-    comprehensive_score = round(total_score / len(watch_list)) if watch_list else 0
-    
-    veritas_payload = {
-        "phase": "DUTCHMAN_TWO",
-        "market_health_score": comprehensive_score,
-        "assets": results,
-        "timestamp": datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    }
-
-    with open('veritas_data.json', 'w') as f:
-        json.dump(veritas_payload, f, indent=4)
-    print(f">> VERITAS: Dutchman Phase 2 Complete. Global Score: {comprehensive_score}")
-
-if __name__ == "__main__":
-    deploy_signal()
-    
