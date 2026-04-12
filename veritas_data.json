@@ -1,0 +1,11 @@
+{
+    "status": "active",
+    "signal": "VERITAS_ALPHA",
+    "analysis": {
+        "ticker": "AAPL",
+        "current_price": 260.48,
+        "sma_20": 253.28,
+        "signal": "BULLISH",
+        "timestamp": "2026-04-12"
+    }
+}
