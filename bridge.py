@@ -1,11 +1,42 @@
 import json
+import requests
+import os  # Added to handle environment variables
+
+def chore_boy_fetch():
+    # THE CHORE BOY: Hunting live market variables
+    # Key is now pulled from the system environment for security
+    api_key = os.getenv("RANGUS_KEY") 
+    
+    if not api_key:
+        print(">> CHORE BOY ERROR: No API key found in environment variables.")
+        return None
+
+    api_url = f"https://api.polygon.io/v2/aggs/ticker/AAPL/prev?adjusted=true&apiKey={api_key}"
+    
+    try:
+        response = requests.get(api_url)
+        live_data = response.json()
+        
+        target_variables = {
+            "ticker": live_data["ticker"],
+            "closing_price": live_data["results"][0]["c"],
+            "trading_volume": live_data["results"][0]["v"]
+        }
+        print(f">> CHORE BOY: Live Data Secured for {target_variables['ticker']}.")
+        return target_variables
+    except Exception as e:
+        print(f">> CHORE BOY ERROR: The hunt failed - {e}")
+        return None
 
 def deploy_signal():
-    # Keto-friendly Classic Almond Butter payload
+    market_data = chore_boy_fetch()
+    
     veritas_payload = {
         "status": "active",
         "signal": "VERITAS_ALPHA",
-        "type": "classic_almond_butter"
+        "type": "classic_almond_butter",
+        "api_owner": "Rangus_Jangus",
+        "market_snapshot": market_data
     }
 
     with open('veritas_data.json', 'w') as f:
@@ -15,4 +46,4 @@ def deploy_signal():
 
 if __name__ == "__main__":
     deploy_signal()
-
+    
