@@ -1,9 +1,13 @@
 name: Execute Technical Analysis Signal
 
 on:
-  workflow_dispatch: # This allows you to "run this bitch" manually with a button
+  workflow_dispatch:
   schedule:
-    - cron: '0 * * * *' # This runs it automatically every hour
+    - cron: '0 * * * *'
+
+# This silences the warning by forcing the newer Node engine
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
 
 jobs:
   run-signal:
@@ -22,6 +26,6 @@ jobs:
 
       - name: Run Bridge Logic
         env:
-          Rangus_Jangus: ${{ secrets.Rangus_Jangus }} # This pulls the secret you just made
+          Rangus_Jangus: ${{ secrets.Rangus_Jangus }}
         run: python bridge.py
         
