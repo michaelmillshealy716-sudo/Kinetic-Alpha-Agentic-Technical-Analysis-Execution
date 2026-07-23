@@ -2,7 +2,7 @@
     "phase": "DUTCHMAN_TWO",
     "market_snapshot": {
         "AMC": {
-            "price": 2.2,
+            "price": 2.25,
             "sma": 1.9805,
             "rsi": 55.07777659668319,
             "score": 75
@@ -14,11 +14,11 @@
             "score": 75
         },
         "NVDA": {
-            "price": 207.29,
+            "price": 212.06,
             "sma": 201.6864999999999,
             "rsi": 52.327888548329796,
             "score": 75
         }
     },
-    "timestamp": "2026-07-22 23:03:44"
+    "timestamp": "2026-07-23 02:41:31"
 }
