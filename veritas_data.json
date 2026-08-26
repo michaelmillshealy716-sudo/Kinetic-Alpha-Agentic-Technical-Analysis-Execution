@@ -2,7 +2,7 @@
     "phase": "DUTCHMAN_TWO",
     "market_snapshot": {
         "AMC": {
-            "price": 2.67,
+            "price": 2.65,
             "sma": 2.5940000000000007,
             "rsi": 58.42121386330127,
             "score": 75
@@ -14,5 +14,5 @@
             "score": 75
         }
     },
-    "timestamp": "2026-08-25 23:24:47"
+    "timestamp": "2026-08-26 01:14:56"
 }
